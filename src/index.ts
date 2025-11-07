@@ -10,6 +10,7 @@ dotenv.config();
 
 const prisma = new PrismaClient();
 const PORT = process.env.PORT || 3000;
+const EXTERNAL_PORT = 3001; 
 const API_KEY = process.env.OPENWEATHER_API_KEY;
 
 if (!API_KEY) {
@@ -135,8 +136,8 @@ const server = http.createServer(async (req, res) => {
 
 
 server.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`);
-    console.log(`Exemplo: http://localhost:${PORT}/weather?city=Biguacu`);
-    console.log(`Histórico: http://localhost:${PORT}/weather/history`);
-    console.log(`Swagger Docs: http://localhost:${PORT}/docs`);
+    console.log(`Servidor rodando em http://localhost:${EXTERNAL_PORT}`);
+    console.log(`Exemplo: http://localhost:${EXTERNAL_PORT}/weather?city=Biguacu`);
+    console.log(`Historico: http://localhost:${EXTERNAL_PORT}/weather/history`);
+    console.log(`Swagger Docs: http://localhost:${EXTERNAL_PORT}/docs`);
 });
