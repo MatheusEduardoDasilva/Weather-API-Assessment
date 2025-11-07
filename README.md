@@ -81,8 +81,8 @@ As credenciais a seguir são utilizadas nos arquivos de configuração do Docker
 | **Host** (Nome do Serviço) | `api-project-db` |
 | **Porta** (Container)      | `5432`           |
 | **Banco**                  | `weatherdb`      |
-| **Usuário**                | `postgres`       |
-| **Senha**                  | `123456`         |
+| **Usuário**                | `seu_usuario`    |
+| **Senha**                  | `sua_senha`      |
 
 ### Adminer (Acesso via Browser em `http://localhost:8080`)
 
@@ -90,16 +90,14 @@ As credenciais a seguir são utilizadas nos arquivos de configuração do Docker
 | :---------------- | :--------------- |
 | **Sistema**       | `PostgreSQL`     |
 | **Servidor**      | `api-project-db` |
-| **Usuário**       | `postgres`       |
-| **Senha**         | `123456`         |
+| **Usuário**       | `seu_usuario`    |
+| **Senha**         | `sua_senha`      |
 | **Base de Dados** | `weatherdb`      |
 
 ## Banco de Dados e Prisma ORM
 
 ### Observação de Conexão
 
-**Importante:** Se você preferir rodar o **Prisma/CLI localmente** (fora do Docker), a URL de conexão deve usar `localhost:5432` (Ex: `postgresql://postgres:123456@localhost:5432/weatherdb?schema=public`).
-Porém, ao rodar a API dentro do Docker Compose, a URL deve apontar para o host do serviço (`api-project-db`).
 
 ### Modelo Principal (`schema.prisma`)
 
