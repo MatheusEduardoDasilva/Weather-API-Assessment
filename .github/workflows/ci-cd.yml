@@ -21,11 +21,10 @@ jobs:
         with:
           node-version: 20
           cache: "pnpm"
+          registry-url: "https://registry.npmjs.org/"
 
       - name: Instalacao de Dependencias
-        run: |
-          npm install -g pnpm
-          pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm build
