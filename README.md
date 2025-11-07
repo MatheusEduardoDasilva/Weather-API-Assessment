@@ -155,9 +155,9 @@ O pipeline é acionado automaticamente nas seguintes situações:
 
 - **Checkout: O GitHub faz o checkout (cópia) do código do repositório em um ambiente isolado.**
 - **Configuração: Configura a versão do Node.js (v20) e as ferramentas necessárias.**
-- **Instalação: Instala as dependências do projeto com o gerenciador pnpm.**
-- **Build: Executa o build (pnpm build), compilando o TypeScript para JavaScript.**
-- **Testes: Roda os testes unitários e de integração (pnpm test).**
+- **Instalação: Instala as dependências do projeto com o gerenciador npm.**
+- **Build: Executa o build (npm build), compilando o TypeScript para JavaScript.**
+- **Testes: Roda os testes unitários e de integração (npm test).**
 - **Resultado: Se todas as etapas passarem com sucesso, o código é considerado válido. Caso contrário, o merge é bloqueado, notificando o desenvolvedor sobre o erro.**
 
 ## Autor
