@@ -9,12 +9,12 @@ import { swaggerDocument } from "./swagger.js";
 dotenv.config();
 
 const prisma = new PrismaClient();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000; 
 const EXTERNAL_PORT = 3001; 
 const API_KEY = process.env.OPENWEATHER_API_KEY;
 
 if (!API_KEY) {
-    console.error("ERRO: Variável OPENWEATHER_API_KEY não definida no .env");
+    console.error("ERRO: Variavel OPENWEATHER_API_KEY nao definida no .env");
     process.exit(1);
 }
 
@@ -56,7 +56,7 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (pathname === "/weather" && req.method === "GET") {
-        const city = reqUrl.searchParams.get("city") || "Biguaçu, BR";
+        const city = reqUrl.searchParams.get("city") || "Biguacu, BR";
 
         try {
             const response = await axios.get("https://api.openweathermap.org/data/2.5/weather", {
@@ -76,7 +76,6 @@ const server = http.createServer(async (req, res) => {
                 umidade: data.main.humidity,
             };
 
-        
             await prisma.weather.create({
                 data: {
                 cidade: weatherInfo.cidade,
@@ -91,15 +90,12 @@ const server = http.createServer(async (req, res) => {
         } 
         
         catch (error) {
-        console.error("Erro ao buscar dados da API:", error);
-        res.statusCode = 500;
-        res.end(JSON.stringify({ erro: "Erro ao buscar dados da API." }));
+            console.error("Erro ao buscar dados da API:", error);
+            res.statusCode = 500;
+            res.end(JSON.stringify({ erro: "Erro ao buscar dados da API." }));
         }
         return;
     }
-
-
-            
 
 
     if (pathname === "/weather/history" && req.method === "GET") {
@@ -108,31 +104,23 @@ const server = http.createServer(async (req, res) => {
                 orderBy: { id: "desc" },
             });
                 
-        res.statusCode = 200;
-        res.end(JSON.stringify(records, null, 2));
+            res.statusCode = 200;
+            res.end(JSON.stringify(records, null, 2));
         } 
 
         catch (error) {
-            if (axios.isAxiosError(error) && error.response && error.response.status === 404) {
-                res.statusCode = 404;
-                res.end(JSON.stringify({ erro: `A cidade não foi encontrada.` }));
-            } 
-            else {
-                console.error("Erro ao buscar dados da API ou salvar no Banco de Dadoos:", error);
-                res.statusCode = 500;
-                res.end(JSON.stringify({ erro: "Erro interno ao buscar ou salvar os dados." }));
-            }
+            console.error("Erro ao buscar dados do Banco de Dados:", error);
+            res.statusCode = 500;
+            res.end(JSON.stringify({ erro: "Erro interno ao buscar o historico de dados." }));
         }
 
         return;
     }
 
     res.statusCode = 404;
-    res.end(JSON.stringify({ erro: "Rota não encontrada." }));
+    res.end(JSON.stringify({ erro: "Rota nao encontrada." }));
 
 });
-
-
 
 
 server.listen(PORT, () => {
