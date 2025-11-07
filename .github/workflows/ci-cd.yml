@@ -22,14 +22,11 @@ jobs:
           node-version: 20
           cache: "npm"
 
-      - name: Instalar PNPM
-        run: npm install -g pnpm
-
       - name: Instalacao de Dependencias
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: Build
-        run: pnpm build
+        run: npm build
 
       - name: Rodar Testes
-        run: pnpm test
+        run: npm test
