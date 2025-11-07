@@ -135,7 +135,28 @@ docker compose down -v
 docker compose up -d --build
 ```
 
-Autor
+## CI/CD Workflow (Integração Contínua)
+
+Este projeto utiliza GitHub Actions para automatizar o processo de validação, garantindo que o código na branch principal (master) esteja sempre estável e livre de erros de compilação.
+
+## Quando Roda (Triggers).
+
+O pipeline é acionado automaticamente nas seguintes situações:
+
+- **A cada push (envio de código) na branch master.**
+- **A cada pull request (solicitação de mesclagem) direcionado para master.**
+
+## O que Acontece (Etapas do Workflow)
+
+- **Checkout: O GitHub faz o checkout (cópia) do código do repositório em um ambiente isolado.**
+- **Configuração: Configura a versão do Node.js (v20) e as ferramentas necessárias.**
+- **Instalação: Instala as dependências do projeto com o gerenciador pnpm.**
+- **Build: Executa o build (pnpm build), compilando o TypeScript para JavaScript.**
+- **Testes: Roda os testes unitários e de integração (pnpm test).**
+- **Resultado: Se todas as etapas passarem com sucesso, o código é considerado válido. Caso contrário, o merge é bloqueado, notificando o desenvolvedor sobre o erro.**
+
+## Autor
+
 Matheus Eduardo da Silva
 
 ```
