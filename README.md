@@ -46,6 +46,11 @@ Abaixo está a estrutura principal de pastas e arquivos do projeto:
     ```bash
     docker compose up -d
     ```
+3.  **Aplicar o Schema do Banco de Dados (Passo OBRIGATÓRIO):**
+    Após subir os contêineres, execute este comando para criar a tabela Weather no PostgreSQL, garantindo que a API possa salvar o histórico.
+    ```bash
+    docker compose exec api npx prisma db push
+    ```
 
 ## Acessando os Serviços
 
@@ -53,8 +58,8 @@ Os seguintes serviços estarão disponíveis após a inicialização dos contain
 
 | Serviço                    | URL                          | Exemplo de Uso                                     |
 | :------------------------- | :--------------------------- | :------------------------------------------------- |
-| **API Principal**          | `http://localhost:3000`      | `http://localhost:3000/weather?city=Florianopolis` |
-| **Documentação (Swagger)** | `http://localhost:3000/docs` | N/A                                                |
+| **API Principal**          | `http://localhost:3001`      | `http://localhost:3001/weather?city=Florianopolis` |
+| **Documentação (Swagger)** | `http://localhost:3001/docs` | N/A                                                |
 | **Adminer (UI do Banco)**  | `http://localhost:8080`      | N/A                                                |
 
 ## Endpoints Principais
@@ -100,12 +105,12 @@ Porém, ao rodar a API dentro do Docker Compose, a URL deve apontar para o host 
 
 ```prisma
 model Weather {
-  id          Int      @id @default(autoincrement())
-  cidade      String
-  temperatura Float
-  descricao   String
-  umidade     Int
-  criadoEm    DateTime @default(now())
+id          Int      @id @default(autoincrement())
+cidade      String
+temperatura Float
+descricao   String
+umidade     Int
+criadoEm    DateTime @default(now())
 }
 ```
 

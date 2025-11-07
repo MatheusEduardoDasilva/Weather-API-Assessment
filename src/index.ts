@@ -9,7 +9,7 @@ import { swaggerDocument } from "./swagger.js";
 dotenv.config();
 
 const prisma = new PrismaClient();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const API_KEY = process.env.OPENWEATHER_API_KEY;
 
 if (!API_KEY) {
